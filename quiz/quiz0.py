@@ -22,3 +22,22 @@ def convert_usd_to_eur():
 # Test code to call the function
 convert_usd_to_eur()
 
+def convert(currency_exchange):
+    """
+    Prompts the user for an amount in USD and converts it to the equivalent amount in multiple currencies.
+    """
+    # Currency_Types:
+    eur = 0.93 
+    gbp = 0.80
+    cny = 7.18
+    jpy = 148.75
+    
+    currency_type = (eur, gbp, cny, jpy)
+    
+    ask_currency_type = float(input("Enter amount in USD: ")) 
+    
+    currency_exchange_type = float(input("Enter amount in USD: "))  
+    eur_amount = usd_amount * usd_to_eur  # Convert the amount to EUR
+    print(f"{usd_amount} USD is equivalent to {eur_amount} EUR.") # Print the converted amount in EUR
+# Test code to call the function
+convert()
