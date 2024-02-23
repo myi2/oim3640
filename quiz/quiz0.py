@@ -31,10 +31,8 @@ def convert(currency_exchange):
     gbp = 0.80
     cny = 7.18
     jpy = 148.75
-    
-    currency_type = (eur, gbp, cny, jpy)
-    
-    ask_currency_type = float(input("Enter amount in USD: ")) 
+        
+    ask_currency_type = float(input("Enter currency type. Options: eur, gbp, cny, and jpy: ")) 
     
     currency_exchange_type = float(input("Enter amount in USD: "))  
     eur_amount = usd_amount * usd_to_eur  # Convert the amount to EUR
