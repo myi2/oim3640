@@ -61,7 +61,7 @@ def most_common(hist, excluding_stopwords=False):
     returns: list of (frequency, word) pairs
     """
     if excluding_stopwords:
-        stopwords = set(line.strip() for line in open('stopwords.txt'))
+        stopwords = set(line.strip() for line in open('Sessions 15\stopwords.txt'))
         hist = {word: freq for word, freq in hist.items() if word not in stopwords}
     
     return sorted(hist.items(), key=lambda x: x[1], reverse=True)
