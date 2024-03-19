@@ -142,7 +142,6 @@ def sort_mayors_by_pop() -> list:
             else:
                 mayors_population[mayor] = population
         
-        # Sort mayors by total population in descending order
         sorted_mayors = sorted(mayors_population.items(), key=lambda x: x[1], reverse=True)
         
         # Extract sorted list of mayor names
