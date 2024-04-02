@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>Property Information Form</h1>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <div>{{ form.name.label }}{{ form.name() }}</div>
+        <div>{{ form.municipality.label }}{{ form.municipality() }}</div>
+        <div>{{ form.state.label }}{{ form.state() }}</div>
+        <div>{{ form.listing_type.label }}{{ form.listing_type() }}</div>
+        <div>{{ form.past_days.label }}{{ form.past_days() }}</div>
+        <div>{{ form.submit() }}</div>
+    </form>
+</body>
+</html>
