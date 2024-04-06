@@ -28,8 +28,4 @@ In future projects, I aim to set clear responsibilities at the outset, allowing 
 ![Search Page](search_page.jpg)
 ![Result Page](Result_page.jpg)
 
-## Turning in Assignment
-
-The complete code and updated README.md have been pushed to the forked GitHub repository under my GitHub profile. I have created a pull request to the upstream repository for review. The project's GitHub repository URL is [Insert GitHub Repository URL].
-
-[Note: I have submitted on Canvas and added the names of all team members in the comments.]
+[Note: I have submitted on Canvas.]
