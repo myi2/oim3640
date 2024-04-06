@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MBTA Helper Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        #yelp-results {
+            margin-top: 30px;
+        }
+        #yelp-results h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        #yelp-results p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        #yelp-results p strong {
+            font-weight: bold;
+        }
+        #yelp-results ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #yelp-results li {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nearest MBTA Stop</h1>
+    {% if stop_name %}
+        <p>Stop Name: <strong>{{ stop_name }}</strong></p>
+        <p>Wheelchair Accessible: <strong>{{ wheelchair_accessible | default('Not Available') }}</strong></p>
+    {% else %}
+        <p>No MBTA stop found.</p>
+    {% endif %}
+    <a href="/">Try another location</a>
+
+    <div id="yelp-results">
+        <h2>Nearby Recommendations</h2>
+        {% if recommendations %}
+            <ul>
+            {% for business in recommendations %}
+                <li>
+                    <p><strong>{{ business.name }}</strong></p>
+                    <p>Rating: {{ business.rating }} | <a href="{{ business.url }}" target="_blank">View on Yelp</a></p>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No recommendations found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
