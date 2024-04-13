@@ -9,7 +9,6 @@ def query_yelp(lat, lon):
     return response.json()  # This is the raw response from Yelp
 
 
-
 # For debugging: Print names of businesses found
 for business in results.get('businesses', []):
     print(f"Name: {business['name']}, Rating: {business['rating']}, Reviews: {business['review_count']}")
