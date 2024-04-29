@@ -49,13 +49,7 @@ def home():
             form.past_days.data,
             form.name.data.replace(" ", "_")
         )
-        
-        # Check if the file exists
-        if os.path.exists(filename):
-            print(f"File exists: {filename}")  # Add this line to print file existence
-            return send_file(filename, as_attachment=True)
-        else:
-            return "Error: File not found."
+        return send_file(filename, as_attachment=True)
     
     # HTML content defined directly in the return statement
     return render_template_string('''
