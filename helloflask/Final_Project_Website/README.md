@@ -1,4 +1,4 @@
-# HomeHarvest: Real Estate Listings Scraper
+# HomeHarvest Website: Real Estate Listings Scraper
 
 ## Project Overview
 
@@ -11,6 +11,29 @@
 - **Primary Objective:** Develop a Python-based web scraper to efficiently navigate and extract data from real estate websites.
 - **Secondary Objective:** Master data manipulation to structure scraped data into a user-friendly format.
 - **Tertiary Objective:** Explore machine learning algorithms to enhance property recommendations based on user preferences.
+
+## The Challenge of Real Estate Search
+
+Finding the right real estate listing can be a daunting task, especially when you have specific needs and preferences. Buyers and renters often struggle with:
+
+- **Time-Consuming Searches:** Manually sifting through multiple websites and platforms to find listings that match specific criteria.
+- **Data Overload:** Feeling overwhelmed by the sheer volume of available listings, many of which do not meet the searcher's needs.
+- **Lack of Customization:** Difficulty in filtering searches to show only those properties that match all specified criteria such as location, price range, and features.
+- **Recent Listings:** The challenge of finding the most current listings without trawling through outdated or already sold properties.
+
+In a fast-moving real estate market, these challenges can lead to missed opportunities and a frustrating search experience.
+
+## Our Solution: HomeHarvest Website
+
+HomeHarvest seeks to alleviate these pain points by providing a centralized, automated scraping tool that:
+
+- **Saves Time:** Quickly retrieves listings from various websites based on user-defined criteria.
+- **Curates Content:** Delivers a focused selection of properties that precisely fit the user's search parameters.
+- **Enhances Search Experience:** Simplifies the search process with an intuitive interface and advanced filtering capabilities.
+- **Offers Fresh Data:** Ensures users get the most up-to-date listings by focusing on recently posted properties.
+
+By streamlining the property search process, HomeHarvest aims to empower users, making their real estate search experience efficient, enjoyable, and effective.
+
 
 ## Implementation Strategy
 
