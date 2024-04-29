@@ -48,6 +48,8 @@ By streamlining the property search process, HomeHarvest aims to empower users, 
 
 1. **Open the Application**
    - Start by navigating to the HomeHarvest application in your web browser.
+     
+![Web Solution Interface](https://raw.githubusercontent.com/myi2/oim3640/main/helloflask/Final_Project_Website/Web_Solution.jpg "Enter Details to Scrape Properties")
 
 2. **Enter Your Details**
    - Fill in each field with the appropriate information:
