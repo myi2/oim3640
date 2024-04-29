@@ -19,17 +19,24 @@ class PropertyForm(FlaskForm):
     past_days = IntegerField('Past Days', validators=[DataRequired()])
     submit = SubmitField('Scrape Properties')
 
-
 def scrape_and_save(municipality, state, listing_type, past_days, user_name):
-    directory = os.path.join(current_app.root_path, 'scraped_data')
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    current_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"{user_name}_{current_timestamp}.csv"
-    file_path = os.path.join(directory, filename)  # Full path where the file will be saved
-    properties = scrape_property(location=f"{municipality}, {state}", listing_type=listing_type, past_days=past_days)
-    properties.to_csv(file_path, index=False)  # Save file to full path
-    return file_path  # Return the full path for use in send_file
+    try:
+        # Get the path to the user's downloads directory
+        if os.name == 'nt':  # Windows
+            downloads_dir = os.path.join(os.path.expanduser('~'), 'Downloads')
+        else:  # Unix-based systems (macOS, Linux)
+            downloads_dir = os.path.join(os.path.expanduser('~'), 'Downloads')
+
+        current_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"{user_name}_{current_timestamp}.csv"
+        file_path = os.path.join(downloads_dir, filename)
+        print(f"File path: {file_path}")  # Print the file path
+        properties = scrape_property(location=f"{municipality}, {state}", listing_type=listing_type, past_days=past_days)
+        properties.to_csv(file_path, index=False)
+        return file_path
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
 
 
 def scrape_and_save(location, listing_type, past_days, user_name):
@@ -49,45 +56,119 @@ def home():
             form.past_days.data,
             form.name.data.replace(" ", "_")
         )
-        return send_file(filename, as_attachment=True)
+        
+        # Check if the file exists
+        if os.path.exists(filename):
+            print(f"File exists: {filename}")  # Add this line to print file existence
+            return send_file(filename, as_attachment=True)
+        else:
+            return "Error: File not found."
     
     # HTML content defined directly in the return statement
     return render_template_string('''
     <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Scrape Properties</title>
-    </head>
-    <body>
-        <h1>Enter Details to Scrape Properties</h1>
-        <form method="post">
-            {{ form.hidden_tag() }}
-            <p>
-                {{ form.name.label }}<br>
-                {{ form.name(size=20) }}<br>
-            </p>
-            <p>
-                {{ form.municipality.label }}<br>
-                {{ form.municipality(size=20) }}<br>
-            </p>
-            <p>
-                {{ form.state.label }}<br>
-                {{ form.state(size=20) }}<br>
-            </p>
-            <p>
-                {{ form.listing_type.label }}<br>
-                {{ form.listing_type() }}<br>
-            </p>
-            <p>
-                {{ form.past_days.label }}<br>
-                {{ form.past_days(size=20) }}<br>
-            </p>
-            <p>{{ form.submit() }}</p>
-        </form>
-    </body>
-    </html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Scrape Properties</title>
+   <style>
+       body {
+           font-family: Arial, sans-serif;
+           background-color: #f2f2f2;
+           margin: 0;
+           padding: 0;
+       }
+
+       .container {
+           max-width: 600px;
+           margin: 50px auto;
+           background-color: #fff;
+           padding: 20px;
+           border-radius: 8px;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+       }
+
+       h1 {
+           text-align: center;
+           color: #333;
+       }
+
+       form {
+           margin-top: 20px;
+       }
+
+       p {
+           margin-bottom: 15px;
+       }
+
+       label {
+           font-weight: bold;
+       }
+
+       input[type="text"] {
+           width: 100%;
+           padding: 8px;
+           border-radius: 5px;
+           border: 1px solid #ccc;
+       }
+
+       select {
+           width: 100%;
+           padding: 8px;
+           border-radius: 5px;
+           border: 1px solid #ccc;
+       }
+
+       input[type="submit"] {
+           width: 100%;
+           padding: 10px;
+           background-color: #4CAF50;
+           color: white;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+           font-size: 16px;
+       }
+
+       input[type="submit"]:hover {
+           background-color: #45a049;
+       }
+   </style>
+</head>
+<body>
+<div class="container">
+   <h1>Enter Details to Scrape Properties</h1>
+   <form method="post">
+       {{ form.hidden_tag() }}
+       <p>
+           <label for="name"> Your Name:</label><br>
+           {{ form.name(size=20) }}
+       </p>
+       <p>
+           <label for="municipality">Municipality:</label><br>
+           {{ form.municipality(size=20) }}
+       </p>
+       <p>
+           <label for="state">State:</label><br>
+           {{ form.state(size=20) }}
+       </p>
+       <p>
+           <label for="listing_type">Listing Type:</label><br>
+           {{ form.listing_type() }}
+       </p>
+       <p>
+           <label for="past_days">Past Days:</label><br>
+           {{ form.past_days(size=20) }}
+       </p>
+       <p>
+           {{ form.submit() }}
+       </p>
+   </form>
+</div>
+</body>
+</html>
     ''', form=form)
 
 if __name__ == "__main__":
     app.run(debug=True)
+
