@@ -28,5 +28,5 @@
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/homeharvest.git
+[git clone https://github.com/yourusername/homeharvest.git](https://github.com/myi2/oim3640/blob/main/helloflask/Final_Project_Website/App_3.py)
 cd homeharvest
