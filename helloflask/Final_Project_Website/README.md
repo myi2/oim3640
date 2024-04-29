@@ -21,6 +21,26 @@
 5. **Data Filtering:** Implement algorithms to sort and present relevant listings.
 6. **Stretch Goals:** Build a web interface using Flask or Django for easy user interaction.
 
+## How to Use the Web Application
+
+1. **Open the Application**
+   - Start by navigating to the HomeHarvest application in your web browser.
+
+2. **Enter Your Details**
+   - Fill in each field with the appropriate information:
+     - **Your Name:** Type your name here.
+     - **Municipality:** Enter the municipality where you're looking for properties.
+     - **State:** Input the state for your property search.
+     - **Listing Type:** Select the type of listing you are interested in from the dropdown menu (e.g., For Sale, For Rent).
+     - **Past Days:** Specify the number of past days you want to search for listings. This filters the properties to only show recent listings.
+
+3. **Submit Your Search**
+   - Once all fields are filled out, click the `Scrape Properties` button. This green button is located at the bottom of the form.
+
+4. **View Your Results**
+   - After clicking the `Scrape Properties` button, the application will process your request and provide you with a downloadable file containing all the real estate listings that meet your specified criteria.
+
+Make sure to input accurate information to get the best results tailored for you. Happy house hunting!
 ## Technical Setup
 
 ### Installation
