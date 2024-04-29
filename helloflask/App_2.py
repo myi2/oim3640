@@ -9,7 +9,7 @@ import os
 from flask import Flask, render_template_string, request, send_file, current_app
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'replace_with_a_secret_key'
+app.config['SECRET_KEY'] = 'klk'
 
 class PropertyForm(FlaskForm):
     name = StringField('Your Name', validators=[DataRequired(), Length(min=2, max=20)])
@@ -20,16 +20,16 @@ class PropertyForm(FlaskForm):
     submit = SubmitField('Scrape Properties')
 
 
-def scrape_and_save(municipality, state, listing_type, past_days, user_name):
-    directory = os.path.join(current_app.root_path, 'scraped_data')
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    current_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"{user_name}_{current_timestamp}.csv"
-    file_path = os.path.join(directory, filename)  # Full path where the file will be saved
-    properties = scrape_property(location=f"{municipality}, {state}", listing_type=listing_type, past_days=past_days)
-    properties.to_csv(file_path, index=False)  # Save file to full path
-    return file_path  # Return the full path for use in send_file
+# def scrape_and_save(municipality, state, listing_type, past_days, user_name):
+#     directory = os.path.join(current_app.root_path, 'scraped_data')
+#     if not os.path.exists(directory):
+#         os.makedirs(directory)
+#     current_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+#     filename = f"{user_name}_{current_timestamp}.csv"
+#     file_path = os.path.join(directory, filename)  # Full path where the file will be saved
+#     properties = scrape_property(location=f"{municipality}, {state}", listing_type=listing_type, past_days=past_days)
+#     properties.to_csv(file_path, index=False)  # Save file to full path
+#     return file_path  # Return the full path for use in send_file
 
 
 def scrape_and_save(location, listing_type, past_days, user_name):
@@ -158,3 +158,5 @@ def home():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    
+    
