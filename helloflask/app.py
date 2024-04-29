@@ -19,24 +19,17 @@ class PropertyForm(FlaskForm):
     past_days = IntegerField('Past Days', validators=[DataRequired()])
     submit = SubmitField('Scrape Properties')
 
-def scrape_and_save(municipality, state, listing_type, past_days, user_name):
-    try:
-        # Get the path to the user's downloads directory
-        if os.name == 'nt':  # Windows
-            downloads_dir = os.path.join(os.path.expanduser('~'), 'Downloads')
-        else:  # Unix-based systems (macOS, Linux)
-            downloads_dir = os.path.join(os.path.expanduser('~'), 'Downloads')
 
-        current_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"{user_name}_{current_timestamp}.csv"
-        file_path = os.path.join(downloads_dir, filename)
-        print(f"File path: {file_path}")  # Print the file path
-        properties = scrape_property(location=f"{municipality}, {state}", listing_type=listing_type, past_days=past_days)
-        properties.to_csv(file_path, index=False)
-        return file_path
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return None
+def scrape_and_save(municipality, state, listing_type, past_days, user_name):
+    directory = os.path.join(current_app.root_path, 'scraped_data')
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    current_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"{user_name}_{current_timestamp}.csv"
+    file_path = os.path.join(directory, filename)  # Full path where the file will be saved
+    properties = scrape_property(location=f"{municipality}, {state}", listing_type=listing_type, past_days=past_days)
+    properties.to_csv(file_path, index=False)  # Save file to full path
+    return file_path  # Return the full path for use in send_file
 
 
 def scrape_and_save(location, listing_type, past_days, user_name):
